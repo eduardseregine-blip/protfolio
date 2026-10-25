@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daria Seregina – Art portfolio</title>
+<style>
+  :root {
+    --paper: #fff8f9;
+    --tile: #f7e1e6;
+    --ink: #2b1a21;
+    --mute: #75505c;
+    --rule: #ebc9d2;
+    --rose: #b83a5e;
+    --pad: clamp(1.25rem, 4vw, 3rem);
+    --gap: clamp(.9rem, 2.2vw, 1.75rem);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1e1317; --tile: #35232b; --ink: #fbeef1; --mute: #cfaab6; --rule: #4a3039; --rose: #f08aa8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1e1317; --tile: #35232b; --ink: #fbeef1; --mute: #cfaab6; --rule: #4a3039; --rose: #f08aa8;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 400 1rem/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+  .page {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap);
+    max-width: 1500px; margin: 0 auto; padding: var(--pad);
+  }
+  .side {
+    grid-column: 1 / 4; align-self: start;
+    position: sticky; top: calc(var(--pad) + env(safe-area-inset-top, 0px));
+  }
+  .main { grid-column: 4 / 13; }
+
+  h1 {
+    margin: 0; font-size: clamp(2.1rem, 3.6vw, 3.4rem); line-height: 1;
+    letter-spacing: -.035em; font-weight: 700; color: var(--rose);
+  }
+  .intro { margin: 1rem 0 2rem; color: var(--mute); max-width: 24ch; }
+  nav ul { list-style: none; margin: 0; padding: 0; }
+  nav a { display: inline-block; padding: .18rem 0; text-decoration: none; font-weight: 600; }
+  nav a:hover { color: var(--rose); text-decoration: underline; text-underline-offset: .25em; }
+
+  .works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--gap) * 2) var(--gap); }
+  article { scroll-margin-top: var(--pad); }
+  .frame {
+    margin: 0; aspect-ratio: 4 / 3; background: var(--tile);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .frame .ph { color: var(--mute); font-size: .9rem; }
+  .frame[role="button"] { cursor: zoom-in; }
+  article h2 { margin: .9rem 0 .15rem; font-size: 1.15rem; line-height: 1.25; font-weight: 700; }
+  article p { margin: 0 0 .6rem; color: var(--mute); }
+  .more { color: var(--rose); font-weight: 700; text-underline-offset: .25em; }
+  .more:hover { text-decoration-thickness: 2px; }
+
+  .about { margin-top: 5rem; padding-top: .9rem; border-top: 1px solid var(--rose); scroll-margin-top: var(--pad); }
+  .about h2 { margin: 0 0 1rem; font-size: 1.15rem; font-weight: 700; }
+  .about p { max-width: 60ch; margin: 0 0 1rem; }
+
+  footer {
+    margin-top: 5rem; padding-top: .8rem; border-top: 1px solid var(--rule);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem;
+    font-size: .9rem; color: var(--mute);
+  }
+  .link {
+    font: inherit; color: inherit; background: none; border: 0; padding: 0;
+    cursor: pointer; text-decoration: underline; text-underline-offset: .25em;
+  }
+  .link:hover { color: var(--rose); }
+
+  dialog {
+    border: 0; padding: 1.25rem; background: var(--paper); color: var(--ink);
+    max-width: min(96vw, 1300px); max-height: 96vh;
+  }
+  dialog::backdrop { background: rgb(30 10 18 / .8); }
+  #viewer img { display: block; max-width: 100%; max-height: 76vh; margin: 0 auto; }
+  .bar { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin-top: .8rem; }
+  .bar p { margin: 0; font-size: .9rem; }
+  .bar .link { color: var(--rose); font-weight: 700; }
+  #privacy { width: min(92vw, 30rem); }
+  #privacy h2 { margin: 0 0 .75rem; font-size: 1.15rem; }
+  #privacy p { margin: 0 0 .8rem; }
+
+  @media (max-width: 820px) {
+    .side { grid-column: 1 / -1; position: static; margin-bottom: 2.5rem; }
+    .main { grid-column: 1 / -1; }
+    .intro { max-width: none; margin-bottom: 1.1rem; }
+    nav ul { display: flex; flex-wrap: wrap; gap: .1rem 1.25rem; }
+    .works { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="side">
+    <h1>Daria Seregina</h1>
+    <p class="intro">Art portfolio. Drawing, painting and animation in eight styles.</p>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#acrylic">Acrylic</a></li>
+        <li><a href="#graphite">Graphite</a></li>
+        <li><a href="#watercolour">Watercolour</a></li>
+        <li><a href="#animation">Animation</a></li>
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#cartoon">Cartoon</a></li>
+        <li><a href="#technical">Technical drawing</a></li>
+        <li><a href="#concept">Concept art</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!--
+      Each work: replace the <span class="ph"> line with
+      <img src="..." alt="Describe the artwork">
+      and set the href of "See more on Google Drive" to the matching Drive folder.
+    -->
+    <div class="works">
+      <article id="acrylic">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Acrylic</h2>
+        <p>Bold, layered colour.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="graphite">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Graphite</h2>
+        <p>Light, shadow and texture in pencil.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="watercolour">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Watercolour</h2>
+        <p>Transparent washes and soft edges.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="animation">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Animation</h2>
+        <p>Drawings brought into motion.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="sketch">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Sketch</h2>
+        <p>Quick studies from observation and imagination.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="cartoon">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Cartoon</h2>
+        <p>Characters and expressions with a touch of humour.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="technical">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Technical drawing</h2>
+        <p>Precise views, dimensions and construction lines.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="concept">
+        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <h2>Concept art</h2>
+        <p>Worlds, characters and ideas developed visually.</p>
+        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+    </div>
+
+    <section class="about" id="about">
+      <h2>About</h2>
+      <p>I’m Daria, and I make drawings, paintings and animation. I like to understand how things are built as well as how they look, so my work moves between loose watercolour and cartoon, careful studies of light and shadow, and precise technical drawing.</p>
+      <p>This page shows one piece from each of the eight styles I work in. The folders on Google Drive hold more.</p>
+    </section>
+
+    <footer>
+      <span>© 2026 Daria Seregina</span>
+      <button type="button" class="link" id="privacy-open">Privacy</button>
+    </footer>
+  </main>
+</div>
+
+<dialog id="viewer" aria-label="Enlarged image">
+  <img src="" alt="">
+  <div class="bar">
+    <p></p>
+    <button type="button" class="link" data-close>Close</button>
+  </div>
+</dialog>
+
+<dialog id="privacy" aria-labelledby="privacy-title">
+  <h2 id="privacy-title">Privacy</h2>
+  <p>This site is view-only and open to anyone who has the link. Visitors cannot enter or submit anything here, so no personal data is collected.</p>
+  <p>The “See more on Google Drive” links lead away from this page. Google Drive has its own privacy policy.</p>
+  <div class="bar"><span></span><button type="button" class="link" data-close>Close</button></div>
+</dialog>
+
+<script>
+  (function () {
+    var viewer = document.getElementById('viewer');
+    var big = viewer.querySelector('img');
+    var cap = viewer.querySelector('p');
+    function enlarge(frame) {
+      var img = frame.querySelector('img');
+      big.src = img.src;
+      big.alt = img.alt;
+      cap.textContent = frame.closest('article').querySelector('h2').textContent;
+      viewer.showModal();
+    }
+    document.querySelectorAll('.frame').forEach(function (frame) {
+      if (!frame.querySelector('img')) return;
+      var name = frame.closest('article').querySelector('h2').textContent;
+      frame.tabIndex = 0;
+      frame.setAttribute('role', 'button');
+      frame.setAttribute('aria-label', 'Enlarge image: ' + name);
+      frame.addEventListener('click', function () { enlarge(frame); });
+      frame.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enlarge(frame); }
+      });
+    });
+    document.getElementById('privacy-open').addEventListener('click', function () {
+      document.getElementById('privacy').showModal();
+    });
+    document.querySelectorAll('dialog').forEach(function (d) {
+      d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+      d.querySelectorAll('[data-close]').forEach(function (b) {
+        b.addEventListener('click', function () { d.close(); });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
