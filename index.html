@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Daria Seregina – Art portfolio</title>
+<!--
+  FILES: keep index.html and the folder "img" together.
+  The folder img must contain these files (exact names):
+    acrilyc.jpg  graphite.jpg  water_color.jpg  animation.mp4  sketch.jpg
+    cartoon.jpg  technical_drawing.jpg  concept.jpg  my_style.png  sticker_pack.png
+  Every work sits in a square frame. Photos of any size are scaled to fit without
+  cropping, and the space left over becomes a rose border.
+  Each work has its own Google Drive link ("See more on Google Drive"). To change it, replace the
+  address in that section. To remove it, delete the whole <a class="more"> line of that section.
+-->
 <style>
   :root {
     --paper: #fff8f9;
@@ -14,6 +24,7 @@
     --rose: #b83a5e;
     --pad: clamp(1.25rem, 4vw, 3rem);
     --gap: clamp(.9rem, 2.2vw, 1.75rem);
+    --border: clamp(.6rem, 2.2vw, 1.1rem);
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -53,18 +64,29 @@
   }
   .intro { margin: 1rem 0 2rem; color: var(--mute); max-width: 24ch; }
   nav ul { list-style: none; margin: 0; padding: 0; }
-  nav a { display: inline-block; padding: .18rem 0; text-decoration: none; font-weight: 600; }
+  nav a { display: inline-block; padding: .15rem 0; text-decoration: none; font-weight: 600; }
   nav a:hover { color: var(--rose); text-decoration: underline; text-underline-offset: .25em; }
 
   .works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--gap) * 2) var(--gap); }
   article { scroll-margin-top: var(--pad); }
+
+  /* Square frame: the work is scaled to fit inside it, never cropped; leftover space shows as border */
   .frame {
-    margin: 0; aspect-ratio: 4 / 3; background: var(--tile);
-    display: grid; place-items: center; overflow: hidden;
+    position: relative; margin: 0; aspect-ratio: 1 / 1; background: var(--tile); overflow: hidden;
   }
-  .frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .frame .ph { color: var(--mute); font-size: .9rem; }
+  .frame img, .frame video {
+    position: absolute; top: var(--border); left: var(--border);
+    width: calc(100% - 2 * var(--border)); height: calc(100% - 2 * var(--border));
+    object-fit: contain; display: block;
+  }
+  .frame .ph {
+    display: none; position: absolute; inset: 0; place-items: center;
+    color: var(--mute); font-size: .9rem;
+  }
+  .frame.missing img, .frame.missing video { display: none; }
+  .frame.missing .ph { display: grid; }
   .frame[role="button"] { cursor: zoom-in; }
+
   article h2 { margin: .9rem 0 .15rem; font-size: 1.15rem; line-height: 1.25; font-weight: 700; }
   article p { margin: 0 0 .6rem; color: var(--mute); }
   .more { color: var(--rose); font-weight: 700; text-underline-offset: .25em; }
@@ -112,7 +134,7 @@
 
   <header class="side">
     <h1>Daria Seregina</h1>
-    <p class="intro">Art portfolio. Drawing, painting and animation in eight styles.</p>
+    <p class="intro">Art portfolio. Drawing, painting and animation.</p>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#acrylic">Acrylic</a></li>
@@ -123,79 +145,122 @@
         <li><a href="#cartoon">Cartoon</a></li>
         <li><a href="#technical">Technical drawing</a></li>
         <li><a href="#concept">Concept art</a></li>
+        <li><a href="#author">Author’s style</a></li>
+        <li><a href="#stickers">Sticker pack</a></li>
         <li><a href="#about">About</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="main">
-    <!--
-      Each work: replace the <span class="ph"> line with
-      <img src="..." alt="Describe the artwork">
-      and set the href of "See more on Google Drive" to the matching Drive folder.
-    -->
     <div class="works">
+
       <article id="acrylic">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/acrilyc.jpg" alt="Acrylic painting of a young woman with long red hair in profile, holding a glowing white butterfly in her open hand against a dark background." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Acrylic</h2>
-        <p>Bold, layered colour.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <p>Layered colour and glowing light.</p>
+        <a class="more" href="https://drive.google.com/drive/folders/1Up8wWnUXT2XfASHBUSF9wOfBopD82SmG" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="graphite">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/graphite.jpg" alt="Graphite still life of a sphere, a cube and a pyramid with strong light and deep shadows." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Graphite</h2>
         <p>Light, shadow and texture in pencil.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1HfOtrRszts6kYHdH3jwSNWDmdvon40SX" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="watercolour">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/water_color.jpg" alt="Watercolour and ink painting of an ornate corner building with a glass dome topped by a sculpture, under a pale blue sky." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Watercolour</h2>
         <p>Transparent washes and soft edges.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1YoeiLkuBoeeq1Hqla64VcTr6vlGFpoBi" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="animation">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <video src="img/animation.mp4" aria-label="Short animation" autoplay loop muted playsinline controls preload="metadata"></video>
+          <span class="ph">Animation to be added</span>
+        </figure>
         <h2>Animation</h2>
         <p>Drawings brought into motion.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1ftPbgAsLA73hE1OR9ZGioRy48YFCLg24" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="sketch">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/sketch.jpg" alt="Ballpoint pen sketch of a grand domed hall with columns, arches and a round pattern on the floor." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Sketch</h2>
         <p>Quick studies from observation and imagination.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1_tN2F9SLUADpzd7mt8YozNXw3ZSp-bKY" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="cartoon">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/cartoon.jpg" alt="Cartoon illustration of four fantasy adventurers walking along a harbour: an elf, a small girl, a girl in a pointed red hat holding a flag, and a bearded orc." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Cartoon</h2>
         <p>Characters and expressions with a touch of humour.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1QGikDw5q7Ho9S1Z8m2faOusHL_EdOqfp" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="technical">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/technical_drawing.jpg" alt="Pencil technical drawing on squared paper: a dimensioned part outline, and circles and arcs with their diameters and radii marked." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Technical drawing</h2>
         <p>Precise views, dimensions and construction lines.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/1iCgovgdKtqF7txoBTeB401KfOGnupJ9H" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
 
       <article id="concept">
-        <figure class="frame"><span class="ph">Photo to be added</span></figure>
+        <figure class="frame">
+          <img src="img/concept.jpg" alt="Character design sheet of a dark blue cat patterned with stars, wearing a red and white striped scarf, shown from the front and from the side." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
         <h2>Concept art</h2>
         <p>Worlds, characters and ideas developed visually.</p>
-        <a class="more" href="https://drive.google.com/" target="_blank" rel="noopener">See more on Google Drive</a>
+        <a class="more" href="https://drive.google.com/drive/folders/13HOEiQHN4AkfRIXzmddWWk7qK-Dk0a4Q" target="_blank" rel="noopener">See more on Google Drive</a>
       </article>
+
+      <article id="author">
+        <figure class="frame">
+          <img src="img/my_style.png" alt="Digital illustration of a laughing girl with wavy blonde hair in a white dress with flowers and dark boots, on an aged paper background with gears." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
+        <h2>Author’s style</h2>
+        <p>Original characters and a visual language of my own.</p>
+        <a class="more" href="https://drive.google.com/drive/folders/1AX_Vjx9Wn5UbapHHqYmoR04T9Qy3kKho" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
+      <article id="stickers">
+        <figure class="frame">
+          <img src="img/sticker_pack.png" alt="Sticker set of a raccoon in five poses: sipping an iced coffee, lying down, hugging a pillow, nibbling a snack and sitting with a happy face." loading="lazy" decoding="async">
+          <span class="ph">Photo to be added</span>
+        </figure>
+        <h2>Sticker pack</h2>
+        <p>Small characters with big expressions.</p>
+        <a class="more" href="https://drive.google.com/drive/folders/1gpEcY-MdNi0hiP5NPtI5NT5wW1KKuIwn" target="_blank" rel="noopener">See more on Google Drive</a>
+      </article>
+
     </div>
 
     <section class="about" id="about">
       <h2>About</h2>
       <p>I’m Daria, and I make drawings, paintings and animation. I like to understand how things are built as well as how they look, so my work moves between loose watercolour and cartoon, careful studies of light and shadow, and precise technical drawing.</p>
-      <p>This page shows one piece from each of the eight styles I work in. The folders on Google Drive hold more.</p>
+      <p>This page shows one piece from each of ten categories. The folders on Google Drive hold more.</p>
     </section>
 
     <footer>
@@ -225,24 +290,46 @@
     var viewer = document.getElementById('viewer');
     var big = viewer.querySelector('img');
     var cap = viewer.querySelector('p');
+
+    function title(frame) { return frame.closest('article').querySelector('h2').textContent; }
     function enlarge(frame) {
       var img = frame.querySelector('img');
       big.src = img.src;
       big.alt = img.alt;
-      cap.textContent = frame.closest('article').querySelector('h2').textContent;
+      cap.textContent = title(frame);
       viewer.showModal();
     }
+    function fail(frame) {
+      frame.classList.add('missing');
+      frame.removeAttribute('role');
+      frame.removeAttribute('tabindex');
+      frame.removeAttribute('aria-label');
+    }
+
     document.querySelectorAll('.frame').forEach(function (frame) {
-      if (!frame.querySelector('img')) return;
-      var name = frame.closest('article').querySelector('h2').textContent;
-      frame.tabIndex = 0;
-      frame.setAttribute('role', 'button');
-      frame.setAttribute('aria-label', 'Enlarge image: ' + name);
-      frame.addEventListener('click', function () { enlarge(frame); });
-      frame.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enlarge(frame); }
-      });
+      var media = frame.querySelector('img, video');
+      if (!media) return;
+      if (media.tagName === 'IMG') {
+        frame.tabIndex = 0;
+        frame.setAttribute('role', 'button');
+        frame.setAttribute('aria-label', 'Enlarge image: ' + title(frame));
+        frame.addEventListener('click', function () { if (!frame.classList.contains('missing')) enlarge(frame); });
+        frame.addEventListener('keydown', function (e) {
+          if ((e.key === 'Enter' || e.key === ' ') && !frame.classList.contains('missing')) {
+            e.preventDefault();
+            enlarge(frame);
+          }
+        });
+        if (media.complete && !media.naturalWidth) fail(frame);
+      }
+      media.addEventListener('error', function () { fail(frame); });
     });
+
+    // Respect "reduce motion": the animation starts only when the visitor presses play.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+    }
+
     document.getElementById('privacy-open').addEventListener('click', function () {
       document.getElementById('privacy').showModal();
     });
